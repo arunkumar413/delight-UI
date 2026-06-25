@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:delight-UI}",
+            "name": "Debug test-exe",
+            "target": "test-exe",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug test-exe"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:delight-UI}",
+            "name": "Release test-exe",
+            "target": "test-exe",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release test-exe"
+        }
+    ]
+}
