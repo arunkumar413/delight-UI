@@ -6,7 +6,7 @@ public final class Window {
     private var renderer: OpaquePointer?
     private let width: Int
     private let height: Int
-    private var texture: OpaquePointer?
+    private var texture: UnsafeMutablePointer<SDL_Texture>?
 
     public init(
         width: Int32,
@@ -16,28 +16,25 @@ public final class Window {
         self.width = Int(width)
         self.height = Int(height)
 
-        SDL_Init(UInt32(SDL_INIT_VIDEO))
+        SDL_Init(SDL_InitFlags(SDL_INIT_VIDEO))
 
         title.withCString { cTitle in
 
             window = SDL_CreateWindow(
                 cTitle,
-                Int32(SDL_WINDOWPOS_CENTERED_MASK),
-                Int32(SDL_WINDOWPOS_CENTERED_MASK),
                 width,
                 height,
-                SDL_WINDOW_SHOWN.rawValue
+                0
             )
 
             renderer = SDL_CreateRenderer(
                 window,
-                -1,
-                0
+                nil
             )
             texture = SDL_CreateTexture(
                 renderer,
-                UInt32(SDL_PIXELFORMAT_ARGB8888.rawValue),
-                Int32(SDL_TEXTUREACCESS_STREAMING.rawValue),
+                SDL_PIXELFORMAT_ARGB8888,
+                SDL_TEXTUREACCESS_STREAMING,
                 width,
                 height
             )
@@ -60,12 +57,12 @@ public final class Window {
 
         while running {
 
-            while SDL_PollEvent(&event) != 0 {
-                if event.type == UInt32(SDL_QUIT.rawValue) {
+                while SDL_PollEvent(&event) {
+                if event.type == UInt32(SDL_EVENT_QUIT.rawValue) {
                     running = false
                 }
 
-                if event.type == UInt32(SDL_MOUSEBUTTONDOWN.rawValue) {
+                if event.type == UInt32(SDL_EVENT_MOUSE_BUTTON_DOWN.rawValue) {
 
                     let mouseX: Float = Float(event.button.x)
                     let mouseY: Float = Float(event.button.y)
@@ -81,7 +78,7 @@ public final class Window {
                     }
                 }
 
-                if event.type == UInt32(SDL_MOUSEBUTTONUP.rawValue) {
+                if event.type == UInt32(SDL_EVENT_MOUSE_BUTTON_UP.rawValue) {
 
                     let x = Float(event.button.x)
                     let y = Float(event.button.y)
@@ -145,7 +142,7 @@ public final class Window {
             return
         }
 
-        softwareRenderer.pixels.withUnsafeBytes { buffer in
+        _ = softwareRenderer.pixels.withUnsafeBytes { buffer in
 
             SDL_UpdateTexture(
                 texture,
@@ -159,7 +156,7 @@ public final class Window {
 
         SDL_RenderClear(renderer)
 
-        SDL_RenderCopy(
+        SDL_RenderTexture(
             renderer,
             texture,
             nil,

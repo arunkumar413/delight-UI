@@ -28,7 +28,9 @@ let package = Package(
 
     targets: [
         .systemLibrary(
-            name: "CSDL"
+            name: "CSDL",
+                pkgConfig: "sdl3"
+
         ),
         .target(
             name: "delight-ui",

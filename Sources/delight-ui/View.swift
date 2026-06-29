@@ -56,9 +56,9 @@ open class View {
 
         switch style.flexDirection {
         case .row:
-            YGNodeStyleSetFlexDirection(layout.node, YGFlexDirectionRow)
+            YGNodeStyleSetFlexDirection(layout.node, YGFlexDirection.row)
         case .column:
-            YGNodeStyleSetFlexDirection(layout.node, YGFlexDirectionColumn)
+            YGNodeStyleSetFlexDirection(layout.node, YGFlexDirection.column)
         }
 
         if let width = style.width {
@@ -71,13 +71,13 @@ open class View {
 
         YGNodeStyleSetMargin(
             layout.node,
-            YGEdgeAll,
+            YGEdge.all,
             style.margin
         )
 
         YGNodeStyleSetPadding(
             layout.node,
-            YGEdgeAll,
+            YGEdge.all,
             style.padding
         )
 
@@ -86,56 +86,56 @@ open class View {
         case .flexStart:
             YGNodeStyleSetJustifyContent(
                 layout.node,
-                YGJustifyFlexStart
+                YGJustify.flexStart
             )
 
         case .center:
             YGNodeStyleSetJustifyContent(
                 layout.node,
-                YGJustifyCenter
+                YGJustify.center
             )
 
         case .flexEnd:
             YGNodeStyleSetJustifyContent(
                 layout.node,
-                YGJustifyFlexEnd
+                YGJustify.flexEnd
             )
 
         case .spaceBetween:
             YGNodeStyleSetJustifyContent(
                 layout.node,
-                YGJustifySpaceBetween
+                YGJustify.spaceBetween
             )
 
         case .spaceAround:
             YGNodeStyleSetJustifyContent(
                 layout.node,
-                YGJustifySpaceAround
+                YGJustify.spaceAround
             )
 
         case .spaceEvenly:
             YGNodeStyleSetJustifyContent(
                 layout.node,
-                YGJustifySpaceEvenly
+                YGJustify.spaceEvenly
             )
         }
 
         switch style.alignItems {
 
         case .strech:
-            YGNodeStyleSetAlignItems(layout.node, YGAlignStretch)
+            YGNodeStyleSetAlignItems(layout.node, YGAlign.stretch)
 
         case .flexEnd:
-            YGNodeStyleSetAlignItems(layout.node, YGAlignFlexEnd)
+            YGNodeStyleSetAlignItems(layout.node, YGAlign.flexEnd)
         case .flexStart:
 
-            YGNodeStyleSetAlignItems(layout.node, YGAlignFlexStart)
+            YGNodeStyleSetAlignItems(layout.node, YGAlign.flexStart)
 
         case .center:
-            YGNodeStyleSetAlignItems(layout.node, YGAlignCenter)
+            YGNodeStyleSetAlignItems(layout.node, YGAlign.center)
 
         case .baseLine:
-            YGNodeStyleSetAlignItems(layout.node, YGAlignBaseline)
+            YGNodeStyleSetAlignItems(layout.node, YGAlign.baseline)
 
         }
 

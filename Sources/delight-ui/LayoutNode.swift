@@ -38,7 +38,7 @@ public final class LayoutNode {
             node,
             width,
             height,
-            YGDirectionLTR
+            YGDirection.LTR
         )
     }
 
@@ -56,9 +56,9 @@ public final class LayoutNode {
         set {
             switch newValue {
             case .row:
-                YGNodeStyleSetFlexDirection(node, YGFlexDirectionRow)
+                YGNodeStyleSetFlexDirection(node, YGFlexDirection.row)
             case .column:
-                YGNodeStyleSetFlexDirection(node, YGFlexDirectionColumn)
+                YGNodeStyleSetFlexDirection(node, YGFlexDirection.column)
             }
         }
         get {

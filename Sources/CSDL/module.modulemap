@@ -1,5 +1,6 @@
-module CSDL [system] {
-    header "/usr/include/SDL2/SDL.h"
-    link "SDL2"
+
+
+module CSDL [extern_c] {
+    header "shim.h"
     export *
 }
